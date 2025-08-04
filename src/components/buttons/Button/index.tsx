@@ -8,10 +8,12 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-accent text-primary",
-        outline: "border-accent border text-accent"
+        outline: "border-accent border text-accent",
+        ghost: ""
       },
       size: {
-        default: "py-2.5 px-5.5"
+        default: "py-2.5 px-5.5",
+        ghost: ""
       }
     },
     defaultVariants: {

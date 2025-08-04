@@ -6,6 +6,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-accent-ghost: var(--accent-ghost);
+  --color-error: var(--error);
 }
 
 :root {
@@ -13,6 +14,7 @@
   --secondary: hsla(0, 0%, 15%, 1);
   --accent: hsla(243, 100%, 69%, 1);
   --accent-ghost: hsla(243, 42%, 83%, 1);
+  --error: hsla(0, 100%, 45%, 1);
 }
 
 .dark {
@@ -20,6 +22,7 @@
   --secondary: hsla(0, 0%, 97%, 1);
   --accent: hsla(243, 100%, 69%, 1);
   --accent-ghost: hsla(243, 42%, 83%, 1);
+  --error: hsla(0, 100%, 45%, 1);
 }
 
 @layer base {

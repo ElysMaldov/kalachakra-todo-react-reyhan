@@ -28,13 +28,20 @@ const TodoList = ({}: TodoListProps) => {
     return <EmptyTodo />;
   }
 
-  const todoItems = todos.map((todo) => (
-    <li key={todo.id}>
-      <TodoItem {...todo} />
-    </li>
-  ));
+  const todoItems = todos.map((todo, i) => {
+    const isEnd = i === todos.length - 1;
 
-  return <ul>{todoItems}</ul>;
+    return (
+      <li key={todo.id}>
+        <TodoItem {...todo} />
+        {!isEnd && (
+          <hr className="border-b-accent/50 my-[17px] border-b border-l-0 border-r-0 border-t-0" />
+        )}
+      </li>
+    );
+  });
+
+  return <ul className="w-full max-w-[520px]">{todoItems}</ul>;
 };
 
 export default TodoList;
