@@ -14,7 +14,7 @@ const TodoItem = ({ completed, id, title }: TodoItemProps) => {
         <input
           id={id.toString()}
           type="checkbox"
-          className="size-6.5 accent-accent cursor-pointer"
+          className="size-6.5 accent-accent rounded-xs cursor-pointer"
           // checked={completed}
         />
         <label
