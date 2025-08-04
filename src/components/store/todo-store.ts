@@ -13,10 +13,6 @@ interface TodoState {
   initializeTodos: (todos: TodoType[]) => void;
   addTodo: (todo: TodoType) => void;
   deleteTodo: (id: number) => TodoType | undefined;
-  /**
-   * Queries based on title
-   */
-  queryTodo: () => TodoType[];
 
   // TODO CRUD todo
 }
@@ -50,5 +46,14 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
 
     return todoToDelete;
   },
-  queryTodo: () => {}
+  queryTodo: () => {
+    const q = get().todoQuery;
+
+    if (!q || !q.length) return get().todos;
+
+    return get().todos.filter(({ title }) => {
+      const regex = new RegExp(q, "i"); // Case insensitive search
+      return regex.test(title);
+    });
+  }
 }));
