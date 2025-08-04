@@ -13,8 +13,11 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <App />
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Toaster />
+        <ReactQueryDevtools
+          initialIsOpen={false}
+          buttonPosition="top-right"
+        />
+        <Toaster position="top-right" />
       </QueryClientProvider>
     </BrowserRouter>
   </StrictMode>
