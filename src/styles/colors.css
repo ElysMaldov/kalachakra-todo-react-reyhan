@@ -1,0 +1,26 @@
+/* Will turn to dark mode if there is data-theme="dark" present in the earlier HTML */
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+}
+
+:root {
+  --primary: hsla(0, 0%, 97%, 1);
+  --secondary: hsla(0, 0%, 15%, 1);
+  --accent: hsla(243, 100%, 69%, 1);
+}
+
+.dark {
+  --primary: hsla(0, 0%, 15%, 1);
+  --secondary: hsla(0, 0%, 97%, 1);
+  --accent: hsla(243, 100%, 69%, 1);
+}
+
+@layer base {
+  body {
+    @apply bg-primary text-secondary;
+  }
+}
