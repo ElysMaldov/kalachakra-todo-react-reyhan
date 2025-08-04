@@ -1,0 +1,5 @@
+@theme {
+  --font-sans: var(--font-kanit);
+  --font-kanit: "Kanit", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
