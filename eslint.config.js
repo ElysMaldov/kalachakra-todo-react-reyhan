@@ -19,5 +19,32 @@ export default tseslint.config([
       ecmaVersion: 2020,
       globals: globals.browser
     }
+  },
+  {
+    rules: {
+      "no-console": ["warn", { allow: ["warn", "error", "info", "dir"] }],
+      "@typescript-eslint/no-empty-object-type": [
+        "off",
+        {
+          allowInterfaces: "always"
+        }
+      ],
+      "no-undef": "error",
+      "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "no-empty-pattern": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          args: "after-used",
+          ignoreRestSiblings: false,
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^(_|ignore)"
+        }
+      ]
+    }
   }
 ]);
