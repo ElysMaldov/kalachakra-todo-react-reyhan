@@ -3,15 +3,34 @@ import { create } from "zustand";
 
 interface TodoState {
   todos: TodoType[];
+
+  /**
+   * Should be the todo's title
+   */
+  todoQuery: string;
+  setTodoQuery: (q: string) => void;
+
   initializeTodos: (todos: TodoType[]) => void;
   addTodo: (todo: TodoType) => void;
   deleteTodo: (id: number) => TodoType | undefined;
+  /**
+   * Queries based on title
+   */
+  queryTodo: () => TodoType[];
 
   // TODO CRUD todo
 }
 
 export const useTodoStore = create<TodoState>()((set, get) => ({
   todos: [],
+
+  todoQuery: "",
+  setTodoQuery(q) {
+    set(() => ({
+      todoQuery: q
+    }));
+  },
+
   initializeTodos: (todos) => {},
   addTodo: (todo) => {
     set((state) => ({
@@ -26,5 +45,6 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
     }));
 
     return todoToDelete;
-  }
+  },
+  queryTodo: () => {}
 }));
