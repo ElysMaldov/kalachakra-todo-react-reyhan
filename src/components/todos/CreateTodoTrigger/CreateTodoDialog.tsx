@@ -3,6 +3,7 @@ import AlertDialog from "@/components/dialogs/AlertDialog";
 import DialogFooter from "@/components/dialogs/AlertDialog/DialogFooter";
 import DialogHeader from "@/components/dialogs/AlertDialog/DialogHeader";
 import DialogTitle from "@/components/dialogs/AlertDialog/DialogTitle";
+import { useCreateTodo } from "@/components/hooks/use-create-todo";
 import Input from "@/components/inputs/Input/input";
 import {
   createTodoSchema,
@@ -24,17 +25,16 @@ const CreateTodoDialog = ({}: CreateTodoDialogProps) => {
     }
   });
 
-  const onSubmit = (values: CreateTodoSchema) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    // TODO utilize RQ mutation
+  const createTodo = useCreateTodo();
 
-    console.log(values);
+  const onSubmit = async (values: CreateTodoSchema) => {
+    await createTodo.mutateAsync(values.title);
+    navigate("/");
   };
 
   const cancelSubmission = () => {
     form.reset();
-    navigate(-1);
+    navigate("/");
   };
 
   return (
