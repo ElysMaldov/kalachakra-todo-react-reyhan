@@ -31,7 +31,11 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
     }));
   },
 
-  initializeTodos: (todos) => {},
+  initializeTodos: (todos) => {
+    set(() => ({
+      todos
+    }));
+  },
   addTodo: (todo) => {
     set((state) => ({
       todos: [todo, ...state.todos] // Prepend to sort based on latest todo

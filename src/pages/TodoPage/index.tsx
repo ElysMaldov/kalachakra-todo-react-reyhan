@@ -1,7 +1,9 @@
 import SearchTodo from "@/components/inputs/SearchTodo";
 import CreateTodoTrigger from "@/components/todos/CreateTodoTrigger";
 import TodoList from "@/components/todos/TodoList";
+import { Suspense } from "react";
 import { Outlet } from "react-router";
+import { ErrorBoundary } from "react-error-boundary";
 
 export interface TodoPageProps {}
 
@@ -20,7 +22,11 @@ const TodoPage = ({}: TodoPageProps) => {
           </section>
         </header>
 
-        <TodoList />
+        <ErrorBoundary fallback={<p>Failed to fetch todos :(</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
+            <TodoList />
+          </Suspense>
+        </ErrorBoundary>
 
         <CreateTodoTrigger />
       </main>
