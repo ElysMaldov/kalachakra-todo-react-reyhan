@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentProps } from "react";
 
 const buttonVariants = cva(
-  "uppercase rounded-[5px] font-medium text-lg cursor-pointer",
+  "uppercase rounded-[5px] font-medium text-lg cursor-pointer disabled:opacity-50",
   {
     variants: {
       variant: {
