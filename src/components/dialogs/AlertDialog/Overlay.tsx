@@ -6,7 +6,7 @@ export interface OverlayProps {
 
 const Overlay = ({ children }: OverlayProps) => {
   return (
-    <div className="absolute flex h-screen w-screen items-center justify-center bg-[hsla(0,0%,15%,0.7)] px-4">
+    <div className="absolute flex h-screen w-screen items-start justify-center bg-[hsla(0,0%,15%,0.7)] px-4 pt-[118px]">
       {children}
     </div>
   );
