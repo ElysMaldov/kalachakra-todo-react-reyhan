@@ -10,7 +10,9 @@ import "./styles/globals.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter 
+    basename="/kalachakra-todo-react-reyhan/"
+    >
       <QueryClientProvider client={queryClient}>
         <App />
         <ReactQueryDevtools
