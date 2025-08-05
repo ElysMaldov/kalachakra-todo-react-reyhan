@@ -1,4 +1,5 @@
 import Button from "@/components/buttons/Button";
+import { useDeleteTodo } from "@/components/hooks/use-delete-todo";
 import Edit from "@/components/icons/Edit";
 import Trash from "@/components/icons/Trash";
 import { mergeClass } from "@/lib/merge-class";
@@ -9,6 +10,8 @@ export interface TodoItemProps extends TodoType {
 }
 
 const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
+  const deleteTodo = useDeleteTodo();
+
   return (
     <article className="group flex w-full flex-row justify-between">
       <section
@@ -45,6 +48,7 @@ const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
           variant="ghost"
           size="ghost"
           className="hover:[&_path]:stroke-error"
+          onClick={() => deleteTodo.mutate(id)}
         >
           <Trash />
         </Button>
