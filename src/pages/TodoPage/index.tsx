@@ -4,6 +4,7 @@ import TodoList from "@/components/todos/TodoList";
 import { Suspense } from "react";
 import { Outlet } from "react-router";
 import { ErrorBoundary } from "react-error-boundary";
+import FilterTodos from "@/components/buttons/FilterTodos";
 
 export interface TodoPageProps {}
 
@@ -16,7 +17,7 @@ const TodoPage = ({}: TodoPageProps) => {
 
           <section className="flex w-full flex-row gap-x-4">
             <SearchTodo />
-            {/* TODO filter select */}
+            <FilterTodos />
             {/* TODO add dark mode toggle */}
             {/* <Button>Dark mode</Button> */}
           </section>

@@ -1,3 +1,4 @@
+import { TodoFilters } from "@/lib/types/TodoFilters";
 import type { TodoType } from "@/models/Todo";
 import { create } from "zustand";
 
@@ -7,23 +8,26 @@ interface TodoState {
   /**
    * Should be the todo's title
    */
-  todoQuery: string;
+  q: string;
   setTodoQuery: (q: string) => void;
 
   initializeTodos: (todos: TodoType[]) => void;
+  // TODO CRUD todo
   addTodo: (todo: TodoType) => void;
   deleteTodo: (id: number) => TodoType | undefined;
 
-  // TODO CRUD todo
+  todoFilter: TodoFilters;
+  setTodoFilter: (filter: TodoFilters) => void;
+  getFilteredTodos: (filter: TodoFilters, q: string) => TodoType[];
 }
 
 export const useTodoStore = create<TodoState>()((set, get) => ({
   todos: [],
 
-  todoQuery: "",
+  q: "",
   setTodoQuery(q) {
     set(() => ({
-      todoQuery: q
+      q: q
     }));
   },
 
@@ -47,13 +51,40 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
     return todoToDelete;
   },
   queryTodo: () => {
-    const q = get().todoQuery;
+    const q = get().q;
 
     if (!q || !q.length) return get().todos;
 
     return get().todos.filter(({ title }) => {
       const regex = new RegExp(q, "i"); // Case insensitive search
       return regex.test(title);
+    });
+  },
+
+  todoFilter: TodoFilters.ALL,
+  setTodoFilter: (filter) => {
+    set(() => ({
+      todoFilter: filter
+    }));
+  },
+  getFilteredTodos: (filter, q) => {
+    if (!q.length) return get().todos;
+
+    return get().todos.filter(({ completed, title }) => {
+      // Filter by status
+      const doesStatusFitFilter =
+        filter === TodoFilters.COMPLETE
+          ? completed === true
+          : TodoFilters.INCOMPLETE
+            ? completed === false
+            : true;
+
+      // Queries based on title
+      const regex = new RegExp(q, "i"); // Case insensitive search
+
+      const doesTitleMatchQuery = regex.test(title);
+
+      return doesStatusFitFilter && doesTitleMatchQuery;
     });
   }
 }));

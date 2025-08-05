@@ -3,7 +3,7 @@ import EmptyTodo from "@/components/todos/TodoList/EmptyTodo";
 import TodoItem from "@/components/todos/TodoList/TodoItem";
 import { getAllTodo } from "@/lib/apis/todo-api/utils/get-all-todos";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
 export interface TodoListProps {}
 
@@ -22,15 +22,11 @@ const TodoList = ({}: TodoListProps) => {
     }
   }, [data, initializeTodos]);
 
-  const todoQuery = useTodoStore((state) => state.todoQuery);
-  const todos = useTodoStore((state) => state.todos);
-  const filteredTodos = useMemo(() => {
-    return todos.filter(({ title }) => {
-      // Queries based on title
-      const regex = new RegExp(todoQuery, "i"); // Case insensitive search
-      return regex.test(title);
-    });
-  }, [todoQuery, todos]);
+  const todoFilter = useTodoStore((state) => state.todoFilter);
+  const todoQuery = useTodoStore((state) => state.q);
+  const getFilteredTodos = useTodoStore((state) => state.getFilteredTodos);
+
+  const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
 
   if (!filteredTodos.length) {
     return <EmptyTodo />;
