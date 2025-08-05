@@ -2,7 +2,7 @@ import { TodoFilters } from "@/lib/types/TodoFilters";
 import type { TodoType } from "@/models/Todo";
 import { create } from "zustand";
 
-interface TodoState {
+export interface TodoState {
   todos: TodoType[];
 
   /**
@@ -12,12 +12,15 @@ interface TodoState {
   setTodoQuery: (q: string) => void;
 
   initializeTodos: (todos: TodoType[]) => void;
-  // TODO CRUD todo
+
   addTodo: (todo: TodoType) => void;
   deleteTodo: (id: number) => TodoType | undefined;
 
   toggleTodo: (id: number) => void;
   revertToggleTodo: (id: number, completed: boolean) => void;
+
+  updateTodo: (todo: TodoType) => void;
+  revertUpdateTodo: (todo: TodoType) => void;
 
   todoFilter: TodoFilters;
   setTodoFilter: (filter: TodoFilters) => void;
@@ -111,6 +114,26 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
           ? {
               ...todo,
               completed
+            }
+          : todo
+      )
+    }));
+  },
+
+  updateTodo: ({ id, ...newTodo }) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id ? { id, ...newTodo } : todo
+      )
+    }));
+  },
+  revertUpdateTodo: ({ id, ...oldTodo }) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id
+          ? {
+              id,
+              ...oldTodo
             }
           : todo
       )

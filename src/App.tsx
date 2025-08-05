@@ -1,6 +1,7 @@
+import CreateTodoDialog from "@/components/todos/CreateTodoTrigger/CreateTodoDialog";
+import UpdateTodoDialog from "@/components/todos/UpdateTodoTrigger/UpdateTodoDialog";
 import { Route, Routes } from "react-router";
 import TodoPage from "./pages/TodoPage";
-import CreateTodoDialog from "@/components/todos/CreateTodoTrigger/CreateTodoDialog";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
         <Route
           path="new-todo"
           element={<CreateTodoDialog />}
+        />
+        <Route
+          path="update-todo/:id"
+          element={<UpdateTodoDialog />}
         />
       </Route>
     </Routes>

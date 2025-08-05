@@ -1,7 +1,7 @@
 import Button from "@/components/buttons/Button";
 import { useDeleteTodo } from "@/components/hooks/use-delete-todo";
-import Edit from "@/components/icons/Edit";
 import Trash from "@/components/icons/Trash";
+import UpdateTodoTrigger from "@/components/todos/UpdateTodoTrigger";
 import { mergeClass } from "@/lib/merge-class";
 import type { TodoType } from "@/models/Todo";
 
@@ -38,13 +38,7 @@ const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
       </section>
 
       <section className="hidden flex-row gap-x-2.5 px-2 group-hover:flex">
-        <Button
-          variant="ghost"
-          size="ghost"
-          className="hover:[&_path]:stroke-accent"
-        >
-          <Edit />
-        </Button>
+        <UpdateTodoTrigger id={id} />
         <Button
           variant="ghost"
           size="ghost"

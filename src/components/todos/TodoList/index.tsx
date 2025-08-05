@@ -19,6 +19,7 @@ const TodoList = ({}: TodoListProps) => {
 
   const initializeTodos = useTodoStore((state) => state.initializeTodos);
 
+  const todos = useTodoStore((state) => state.todos);
   const todoFilter = useTodoStore((state) => state.todoFilter);
   const todoQuery = useTodoStore((state) => state.q);
   const getFilteredTodos = useTodoStore((state) => state.getFilteredTodos);
@@ -34,7 +35,13 @@ const TodoList = ({}: TodoListProps) => {
   useEffect(() => {
     const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
     setFilteredTodos(filteredTodos);
-  }, [getFilteredTodos, todoFilter, todoQuery]);
+  }, [
+    getFilteredTodos,
+    todoFilter,
+    todoQuery,
+
+    todos // Need this to depend on local todo updates
+  ]);
 
   if (!filteredTodos.length) {
     return <EmptyTodo />;
