@@ -1,3 +1,4 @@
+import { useToggleTodo } from "@/components/hooks/use-toggle-todo";
 import { useTodoStore } from "@/components/store/todo-store";
 import EmptyTodo from "@/components/todos/TodoList/EmptyTodo";
 import TodoItem from "@/components/todos/TodoList/TodoItem";
@@ -22,6 +23,8 @@ const TodoList = ({}: TodoListProps) => {
   const todoQuery = useTodoStore((state) => state.q);
   const getFilteredTodos = useTodoStore((state) => state.getFilteredTodos);
 
+  const toggleTodo = useToggleTodo();
+
   useEffect(() => {
     if (data) {
       initializeTodos(data);
@@ -39,7 +42,10 @@ const TodoList = ({}: TodoListProps) => {
 
     return (
       <li key={todo.id}>
-        <TodoItem {...todo} />
+        <TodoItem
+          {...todo}
+          onClick={async () => await toggleTodo.mutateAsync(todo)}
+        />
         {!isEnd && (
           <hr className="border-b-accent/50 my-[17px] border-b border-l-0 border-r-0 border-t-0" />
         )}

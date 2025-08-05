@@ -16,6 +16,9 @@ interface TodoState {
   addTodo: (todo: TodoType) => void;
   deleteTodo: (id: number) => TodoType | undefined;
 
+  toggleTodo: (id: number) => void;
+  revertToggleTodo: (id: number, completed: boolean) => void;
+
   todoFilter: TodoFilters;
   setTodoFilter: (filter: TodoFilters) => void;
   getFilteredTodos: (filter: TodoFilters, q: string) => TodoType[];
@@ -86,5 +89,31 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
 
       return doesStatusFitFilter && doesTitleMatchQuery;
     });
+  },
+
+  toggleTodo: (id) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed: !todo.completed
+            }
+          : todo
+      )
+    }));
+  },
+
+  revertToggleTodo: (id, completed) => {
+    set((state) => ({
+      todos: state.todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed
+            }
+          : todo
+      )
+    }));
   }
 }));

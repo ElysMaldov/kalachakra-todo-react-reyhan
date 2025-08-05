@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 
-export default function useDarkMode() {
+const useDarkMode = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
@@ -36,4 +36,6 @@ export default function useDarkMode() {
   }, [isDarkMode]);
 
   return { isDarkMode, toggleDarkMode };
-}
+};
+
+export default useDarkMode;

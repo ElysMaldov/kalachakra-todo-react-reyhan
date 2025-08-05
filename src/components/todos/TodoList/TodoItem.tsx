@@ -1,25 +1,33 @@
 import Button from "@/components/buttons/Button";
 import Edit from "@/components/icons/Edit";
 import Trash from "@/components/icons/Trash";
+import { mergeClass } from "@/lib/merge-class";
 import type { TodoType } from "@/models/Todo";
 
-export interface TodoItemProps extends TodoType {}
+export interface TodoItemProps extends TodoType {
+  onClick?: (id: number) => void;
+}
 
-const TodoItem = ({ completed, id, title }: TodoItemProps) => {
+const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
   return (
     <article className="group flex w-full flex-row justify-between">
-      <section className="flex grow flex-row items-center">
-        {/* TODO add mark todo logic API */}
+      <section
+        className="flex grow flex-row items-center"
+        onClick={() => onClick?.(id)}
+      >
         {/* TODO Make V icon thinner */}
         <input
           id={id.toString()}
           type="checkbox"
           className="size-6.5 accent-accent rounded-xs cursor-pointer"
-          // checked={completed}
+          checked={completed}
         />
         <label
           htmlFor={id.toString()}
-          className="grow cursor-pointer pl-[17px] text-xl font-medium"
+          className={mergeClass(
+            "grow cursor-pointer pl-[17px] text-xl font-medium",
+            completed && "text-secondary/50 line-through"
+          )}
         >
           {title}
         </label>
