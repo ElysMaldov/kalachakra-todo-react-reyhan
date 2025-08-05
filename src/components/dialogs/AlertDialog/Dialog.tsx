@@ -6,7 +6,7 @@ export interface DialogProps {
 
 const Dialog = ({ children }: DialogProps) => {
   return (
-    <section className="bg-primary py-4.5 px-7.5 flex w-full max-w-[500px] flex-col items-center rounded-2xl">
+    <section className="bg-primary py-4.5 px-7.5 border-primary dark:border-secondary flex w-full max-w-[500px] flex-col items-center rounded-2xl border">
       {children}
     </section>
   );
