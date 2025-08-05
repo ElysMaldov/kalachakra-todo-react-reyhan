@@ -14,15 +14,15 @@ const Input = ({ className, trailingIcon, ...props }: InputProps) => {
         {...props}
         className={mergeClass(
           "w-full",
-          "border-accent rounded-[5px] border px-4 py-2",
+          "border-accent dark:border-secondary rounded-[5px] border px-4 py-2",
           "font-inter font-medium",
           "placeholder:text-accent-ghost",
-          "text-accent text-base",
+          "text-accent dark:text-secondary text-base",
           "focus-visible:border-accent focus-visible:ring-accent-ghost focus-visible:outline-none focus-visible:ring-[2px]",
           className
         )}
       />
-      <div className="absolute bottom-2.5 right-4 top-2.5">{trailingIcon}</div>
+      <div className="absolute bottom-2 right-4 top-2">{trailingIcon}</div>
     </div>
   );
 };

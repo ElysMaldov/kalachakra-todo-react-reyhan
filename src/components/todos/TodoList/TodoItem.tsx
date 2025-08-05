@@ -1,31 +1,42 @@
 import Button from "@/components/buttons/Button";
 import { useDeleteTodo } from "@/components/hooks/use-delete-todo";
+import { useToggleTodo } from "@/components/hooks/use-toggle-todo";
+import Check from "@/components/icons/Check";
 import Trash from "@/components/icons/Trash";
 import UpdateTodoTrigger from "@/components/todos/UpdateTodoTrigger";
 import { mergeClass } from "@/lib/merge-class";
 import type { TodoType } from "@/models/Todo";
 
-export interface TodoItemProps extends TodoType {
-  onClick?: (id: number) => void;
-}
+export interface TodoItemProps extends TodoType {}
 
-const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
+const TodoItem = ({ completed, id, title }: TodoItemProps) => {
+  const toggleTodo = useToggleTodo();
   const deleteTodo = useDeleteTodo();
 
   return (
     <article className="group flex w-full flex-row justify-between">
       <section
         className="flex grow flex-row items-center"
-        onClick={() => onClick?.(id)}
+        onClick={async () =>
+          // FIXME why does updates happen twice which causes flickering?
+          await toggleTodo.mutateAsync({ id, title, completed })
+        }
       >
-        {/* TODO Make V icon thinner */}
-        <input
-          id={id.toString()}
-          type="checkbox"
-          className="size-6.5 accent-accent rounded-xs cursor-pointer"
-          checked={completed}
-          readOnly
-        />
+        <div
+          className={mergeClass(
+            "size-6.5 rounded-xs border-accent flex cursor-pointer items-start justify-center border pt-1",
+            completed && "bg-accent"
+          )}
+        >
+          <input
+            id={id.toString()}
+            type="checkbox"
+            className="hidden"
+            checked={completed}
+            readOnly
+          />
+          {completed && <Check />}
+        </div>
         <label
           htmlFor={id.toString()}
           className={mergeClass(
