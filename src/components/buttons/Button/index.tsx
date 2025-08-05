@@ -7,7 +7,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-accent text-primary",
+        default: "bg-accent text-primary dark:text-secondary",
         outline: "border-accent border text-accent",
         ghost: ""
       },

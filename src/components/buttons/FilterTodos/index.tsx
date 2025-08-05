@@ -15,7 +15,7 @@ const FilterTodos = ({}: FilterTodosProps) => {
   return (
     <section className="relative w-fit">
       <Button
-        className="gap-x-6.5 flex min-w-[105px] flex-row items-center justify-between p-2.5"
+        className="gap-x-6.5 max-h-9.5 flex min-w-[105px] flex-row items-center justify-between p-2.5"
         onClick={() => setShowMenu((prev) => !prev)}
       >
         {filterLabel} <ChevronDown />

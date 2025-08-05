@@ -9,6 +9,7 @@ const SearchTodo = ({}: SearchTodoProps) => {
 
   return (
     <Input
+      className="max-h-9.5"
       placeholder="Search note..."
       trailingIcon={<MagnifyingGlass />}
       onChange={(e) => setTodoQuery(e.target.value)}

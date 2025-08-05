@@ -1,5 +1,5 @@
-/* Will turn to dark mode if there is data-theme="dark" present in the earlier HTML */
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* Will turn to dark mode if there is .dark class present in the earlier HTML */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-primary: var(--primary);

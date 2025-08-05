@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { Outlet } from "react-router";
 import { ErrorBoundary } from "react-error-boundary";
 import FilterTodos from "@/components/buttons/FilterTodos";
+import ThemeToggle from "@/components/buttons/ThemeToggle";
 
 export interface TodoPageProps {}
 
@@ -18,8 +19,7 @@ const TodoPage = ({}: TodoPageProps) => {
           <section className="flex w-full flex-row gap-x-4">
             <SearchTodo />
             <FilterTodos />
-            {/* TODO add dark mode toggle */}
-            {/* <Button>Dark mode</Button> */}
+            <ThemeToggle />
           </section>
         </header>
 
