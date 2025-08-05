@@ -1,0 +1,32 @@
+/* Will turn to dark mode if there is .dark class present in the earlier HTML */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-ghost: var(--accent-ghost);
+  --color-error: var(--error);
+}
+
+:root {
+  --primary: hsla(0, 0%, 97%, 1);
+  --secondary: hsla(0, 0%, 15%, 1);
+  --accent: hsla(243, 100%, 69%, 1);
+  --accent-ghost: hsla(243, 42%, 83%, 1);
+  --error: hsla(0, 100%, 45%, 1);
+}
+
+.dark {
+  --primary: hsla(0, 0%, 15%, 1);
+  --secondary: hsla(0, 0%, 97%, 1);
+  --accent: hsla(243, 100%, 69%, 1);
+  --accent-ghost: hsla(0, 0%, 40%, 1);
+  --error: hsla(0, 100%, 45%, 1);
+}
+
+@layer base {
+  body {
+    @apply bg-primary text-secondary;
+  }
+}
