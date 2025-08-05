@@ -28,10 +28,13 @@ const TodoList = ({}: TodoListProps) => {
   useEffect(() => {
     if (data) {
       initializeTodos(data);
-      const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
-      setFilteredTodos(filteredTodos);
     }
-  }, [data, getFilteredTodos, initializeTodos, todoFilter, todoQuery]);
+  }, [data, initializeTodos]);
+
+  useEffect(() => {
+    const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
+    setFilteredTodos(filteredTodos);
+  }, [getFilteredTodos, todoFilter, todoQuery]);
 
   if (!filteredTodos.length) {
     return <EmptyTodo />;

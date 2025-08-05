@@ -24,6 +24,7 @@ const TodoItem = ({ completed, id, title, onClick }: TodoItemProps) => {
           type="checkbox"
           className="size-6.5 accent-accent rounded-xs cursor-pointer"
           checked={completed}
+          readOnly
         />
         <label
           htmlFor={id.toString()}

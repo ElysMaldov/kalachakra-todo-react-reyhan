@@ -71,7 +71,7 @@ export const useTodoStore = create<TodoState>()((set, get) => ({
     }));
   },
   getFilteredTodos: (filter, q) => {
-    if (!q.length) return get().todos;
+    if (!q.length && filter === TodoFilters.ALL) return get().todos;
 
     return get().todos.filter(({ completed, title }) => {
       // Filter by status
