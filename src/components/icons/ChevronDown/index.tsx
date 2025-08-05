@@ -12,14 +12,14 @@ const ChevronDown = ({}: ChevronDownProps) => {
       <path
         d="M4 4L1 1"
         stroke="#F7F7F7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M7 1L4 4"
         stroke="#F7F7F7"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -2,12 +2,14 @@ import { useTodoStore } from "@/components/store/todo-store";
 import EmptyTodo from "@/components/todos/TodoList/EmptyTodo";
 import TodoItem from "@/components/todos/TodoList/TodoItem";
 import { getAllTodo } from "@/lib/apis/todo-api/utils/get-all-todos";
+import type { TodoType } from "@/models/Todo";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export interface TodoListProps {}
 
 const TodoList = ({}: TodoListProps) => {
+  const [filteredTodos, setFilteredTodos] = useState<TodoType[]>([]);
   // Get data using suspense to show loading state above this TodoList
   const { data } = useSuspenseQuery({
     queryKey: ["todos"],
@@ -16,17 +18,17 @@ const TodoList = ({}: TodoListProps) => {
 
   const initializeTodos = useTodoStore((state) => state.initializeTodos);
 
-  useEffect(() => {
-    if (data) {
-      initializeTodos(data);
-    }
-  }, [data, initializeTodos]);
-
   const todoFilter = useTodoStore((state) => state.todoFilter);
   const todoQuery = useTodoStore((state) => state.q);
   const getFilteredTodos = useTodoStore((state) => state.getFilteredTodos);
 
-  const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
+  useEffect(() => {
+    if (data) {
+      initializeTodos(data);
+      const filteredTodos = getFilteredTodos(todoFilter, todoQuery);
+      setFilteredTodos(filteredTodos);
+    }
+  }, [data, getFilteredTodos, initializeTodos, todoFilter, todoQuery]);
 
   if (!filteredTodos.length) {
     return <EmptyTodo />;
