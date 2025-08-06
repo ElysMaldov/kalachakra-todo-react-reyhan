@@ -16,8 +16,7 @@ If you want to run locally:
 
 This ToDo app utilizes React with Vite and Tailwind CSS for the UI, with interaction with API using Axios and React Query, and state management using Zustand. The approach to data fetching and mutation utilizes optimistic UI updates and local-first operations. In short, data is fetched and mutated using Axios through React Query with custom hooks; and anytime an operation happens that queries or mutates the data, we update our Zustand store and all other components only need to subscribe to specific Zustand states. This way, data fetching and data usage are decoupled.
 
-<!-- TODO add image -->
-![Technical Overview](public/technical-overview.png)
+![Components Overview](public/components-overview.png)
 
 ## Folder Structure
 
@@ -72,6 +71,8 @@ React Router DOM has been setup to render pages and nested routes. Nested routes
 Data fetching uses axios library to have a nicer and more organized API interface. I created a `todoAPIInstance` and helper async functions to handle interacting with the ToDo API. React Query is utilized to cache the data. To provide a more snappy experience, I use React Query in Suspense mode (`useSuspenseQuery`) to fetch the todo data so users can instantly access the app and I show them a loading component until the data comes through.
 
 ### Optimistic UI Updates with Zustand and React Query Custom Hooks
+
+![Technical Overview](public/technical-overview.png)
 
 Most components have access to the todo Zustand store `useTodoStore` that contains fields and methods to help interact with the todo data. Most components subscribes to a specific part of the store so only updates to those states will trigger a re-render. This way, I utilize Zustand as the main source-of-truth.
 
