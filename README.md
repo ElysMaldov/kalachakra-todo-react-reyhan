@@ -40,7 +40,7 @@ This ToDo app utilizes React with Vite and Tailwind CSS for the UI, with interac
         └── 📁types
     └── 📁models // Models used in the App (Todo for now)
     └── 📁pages // Pages to render in React Router paths
-    └── 📁styles
+    └── 📁styles // Contains styles for Tailwind
 ```
 
 ## Task Progress
@@ -51,12 +51,13 @@ This ToDo app utilizes React with Vite and Tailwind CSS for the UI, with interac
 - [X] Mark Todo as Done / Undone
 - [X] Update Todo
 - [X] Delete Todo
+- [X] Dark mode
 
 ## Features
 
-### React + Tailwind v4
+### React + Tailwind v4 + Dark Mode
 
-I use React and Tailwind v4 with custom themes from the Figma file to create custom UIs.
+I use React and Tailwind v4 with custom themes from the Figma file to create custom UIs. Dark mode is implemented using Tailwind and having 2 different colors for each CSS variables based on the `.dark` class.
 
 ### Zod + React Hook Form
 
